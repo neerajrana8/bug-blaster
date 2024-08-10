@@ -9,11 +9,19 @@ export default function TicketItem({ticket, dispatch}){
         3: "priority-high"
     }
 
+    const deleteTicket = ()=>{
+        dispatch({
+            type: 'DELETE_TICKET',
+            payload: {id}
+        })
+    }
+
     return(
         <div className="ticket-item">
             <div className={`priority-dot ${priorityClass[ticket.priority]}`}></div>
             <h3>{title}</h3>
             <p>{description}</p>
+            <button className="button" onClick={deleteTicket}>Delete post</button>
         </div>
     )
 }
