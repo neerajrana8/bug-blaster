@@ -16,12 +16,18 @@ export default function TicketItem({ticket, dispatch}){
         })
     }
 
+    const editTicket = () =>{
+        dispatch({
+            type: "SET_EDITING_TICKET", payload: ticket
+        })
+    }
     return(
         <div className="ticket-item">
             <div className={`priority-dot ${priorityClass[ticket.priority]}`}></div>
             <h3>{title}</h3>
             <p>{description}</p>
             <button className="button" onClick={deleteTicket}>Delete post</button>
+            <button className="button" onClick={editTicket}>Edit post</button>
         </div>
     )
 }
