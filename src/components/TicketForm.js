@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {type} from "@testing-library/user-event/dist/type";
 
 export default function TicketForm({dispatch, editingTicket}){
     const [title,setTitle] = useState("");
@@ -39,9 +40,12 @@ export default function TicketForm({dispatch, editingTicket}){
             type: editingTicket ? "UPDATE_TICKET" : "ADD_TICKET",
             payload: ticketData
         });
-
         clearForm();
+    }
 
+    const handleCancel = ()=> {
+        dispatch({type: 'CLEAR_EDITING_TICKET'})
+        clearForm()
 
     }
     return(
@@ -66,7 +70,11 @@ export default function TicketForm({dispatch, editingTicket}){
                     ))
                 }
             </fieldset>
-            <button type="submit">Submit</button>
+            <button className="button" type="submit">Submit</button>
+            {editingTicket && (
+                <button className="button" onClick={handleCancel}>Cancel</button>
+            )
+            }
         </form>
 
     )
